@@ -1,6 +1,4 @@
 #!/bin/bash
-read $USERNAME
-useradd -s /bin/bash/ -m -d /home/$USERNAME "$USERNAME"
-echo "Done!"
-
+kasutajanimi=$1
+useradd $kasutajanimi -m -s /bin/bash
 
