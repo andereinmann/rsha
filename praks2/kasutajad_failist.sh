@@ -10,8 +10,8 @@ failinimi=$1
 			kasutajanimi=$(echo "$rida" | cut -f1 -d:)
 			sh lisa_kasutaja.sh $kasutajanimi
 			echo $rida | chpasswd
-done
+			done
 		else
 		echo "Probleem failiga $failinimi"
-		fi
-fi
+			fi	
+	fi
