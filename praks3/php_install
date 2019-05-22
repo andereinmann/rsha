@@ -1,0 +1,17 @@
+#!/bin/bash
+
+dpkg-query -W -f='${Status}' php5-common libapache2-mod-php5 php5-cli > /dev/null 2>&1
+case $? in
+0)
+	echo $1 is installed
+	;;
+1)
+	echo $1 is not installed
+	apt-get install -y php5-common libapache2-mod-php5 php5-cli;
+	echo "PHP on installeeritud!";
+	;;
+2)
+	echo Error
+	;;
+esac
+
