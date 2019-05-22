@@ -1,0 +1,16 @@
+#!/bin/bash
+
+dpkg-query -W -f='${Status}' apache2 > /dev/null 2>&1
+case $? in
+0)
+	echo $1 is installed
+	;;
+1)
+	echo $1 is not installed
+	apt-get install -y apache2;
+	;;
+2)
+	echo Error
+	;;
+esac
+
