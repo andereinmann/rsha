@@ -1,0 +1,19 @@
+#!/bin/bash
+
+dpkg-query -W -f='${Status}' phpmyadmin > /dev/null 2>&1
+case $? in
+0)
+	echo $1 is installed
+	;;
+1)
+	echo $1 is not installed
+	export DEBIAN_FRONTEND="noninteractive"
+	apt-get install -y phpmyadmin;
+	dpkg-reconfigure --frontend=noninteractive phpmyadmin
+	echo "phpmyadmin on installeeritud!";
+	;;
+2)
+	echo Error
+	;;
+esac
+
