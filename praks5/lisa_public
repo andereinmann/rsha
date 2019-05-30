@@ -1,0 +1,18 @@
+#!/bin/bash
+
+if [ $# -ne 1 ]; then
+	echo "Kasutusjuhend: $0 kasutajanimi"
+else
+
+	kasutajanimi=$1
+	mkdir /home/$kasutajanimi/public && chown -R $kasutajanimi:$kasutajanimi /home/$kasutajanimi/public && chmod 751 /home/$kasutajanimi/public
+
+if [ $? -eq 0 ]; then 
+echo "Kasutaja nimega $kasutajanimi kodukaustas public loodud"
+cat /etc/passwd | grep $kasutajanimi
+ls -la /home/$kasutajanimi
+else
+echo "Probleem kasutaja $kasutajanimi lisamisega"
+echo "Kood: $"
+fi
+fi
