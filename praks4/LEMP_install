@@ -1,0 +1,33 @@
+#!/bin/sh
+
+# Uuendame paketid ja süsteemi
+echo -e "Uuendame süsteemi.."
+sudo apt-get update -y && sudo apt-get upgrade -y
+
+## Paigaldame LEMP Stack'i 
+echo -e "Paigaldame nginx'i"
+sudo apt-get install nginx
+
+echo -e "Paigaldame PHP paketid"
+sudo apt-get install libapache2-mod-php5 php5 php5-common php5-curl php5-dev php5-gd php5-idn php-pear php5-imagick php5-mcrypt php5-mysql php5-ps php5-pspell php5-recode php5-xsl -y
+
+echo -e "Paigaldame MySQL'i"
+sudo apt-get install mysql-server mysql-client libmysqlclient15.dev -y
+
+echo -e "Paigaldame phpMyAdmin'it"
+sudo apt-get install phpmyadmin -y
+
+## Seadistused
+# Õigused
+echo -e "Seadistame õigused /var/www kaustale"
+sudo chown -R www-data:www-data /var/www
+echo -e "Õigused on konfigureeritud"
+
+# Lubame moodulid
+echo -e "Lubame moodulid"
+sudo a2enmod rewrite
+sudo php5enmod mcrypt
+
+# Taaskäivitame Apache'i
+echo -e "Taaskäivitame Apache'i"
+sudo service apache2 restart
