@@ -25,7 +25,7 @@ echo -e "Õigused on konfigureeritud"
 
 # Lubame moodulid
 echo -e "Lubame moodulid"
-sudo a2enmod rewrite
+sudo systemctl enable nginx
 sudo php5enmod mcrypt
 
 # Taaskäivitame Apache'i
